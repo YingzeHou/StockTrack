@@ -15,7 +15,7 @@ def get_curr_price(name: str):
 
 @app.route("/ticker/all", methods = ['GET'])
 def all_tickers():
-    return {'codes': ['WMT', 'AAPL', 'TSLA', 'MRK', 'LNG', 'ABG', 'AMZN', 'GD', 'PANW', 'TGT', 'ISRG', 'XOM', 'PLAN','BX']}
+    return {'codes': ['WMT', 'AAPL', 'TSLA', 'MRK', 'LNG', 'ABG', 'AMZN', 'GD', 'PANW', 'TGT', 'ISRG', 'XOM', 'PLAN','BX','BAYRY','ENPH','EXC','MRVL','NTES','NVDA']}
 
 @app.route("/ticker/<string:name>",methods=["GET"])
 def home_trend(name: str):

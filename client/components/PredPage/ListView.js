@@ -59,7 +59,7 @@ class ListView extends React.Component{
                         {/* <Card.Title style={styles.title}>{this.props.ticker} Predictor</Card.Title> */}
                         <View style={styles.pricecontainer}>
                             <Text style={styles.text}>Current Price:</Text>
-                            <Text style={(this.state.price-this.state.lastPrice>0)?styles.uptext:styles.downtext}>{this.state.price}</Text>
+                            <Text style={(this.state.price-this.state.lastPrice>0)?styles.uptext:styles.downtext}>${this.state.price}</Text>
                         </View>
                         <View style={styles.block}></View>
                         <View style={styles.line}></View>

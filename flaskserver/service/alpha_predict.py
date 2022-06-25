@@ -27,9 +27,13 @@ TYPE = 'Close'
 def create_dataset(dataset, n_past):
     x = []
     y = []
-    for i in range(n_past, len(dataset) - n_future+1):
-        x.append(dataset[i-n_past:i, 0:dataset.shape[1]])
-        y.append(dataset[i+n_future-1:i+n_future, 0])
+    # for i in range(n_past, len(dataset) - n_future+1):
+    #     x.append(dataset[i-n_past:i, 0:dataset.shape[1]])
+    #     y.append(dataset[i+n_future-1:i+n_future, 0])
+    # return np.array(x), np.array(y)
+    for i in range(len(dataset)-n_past-1):
+        x.append(dataset[i:(i+n_past), 0])
+        y.append(dataset[i + n_past, 0])
     return np.array(x), np.array(y)
 
 def get_current_price(TICKER):
@@ -46,8 +50,9 @@ def stock_predict(TICKER):
     df_for_training_scaled=scaler.fit_transform(np.array(df_for_training).reshape(-1,1))
 
     # Use first 60 points to predict the 101th one, etc......
-    n_past = 60
+    n_past = 10
     x_all, y_all = create_dataset(df_for_training_scaled, n_past)
+    x_all = x_all.reshape(x_all.shape[0],x_all.shape[1],1)
     model = load_model(f'service/Models/{TICKER}.h5')
 
     # Determine past and future data to plot and plug back into the date dataframe
